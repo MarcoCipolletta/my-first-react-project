@@ -1,0 +1,32 @@
+.todo-item {
+  margin-bottom: 0.5rem;
+  padding: 0.5rem;
+  background: #f9f9f9;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #e0e0e0;
+  border-radius: 4px;
+
+  span {
+    cursor: pointer;
+  }
+
+  span.completed {
+    text-decoration: line-through;
+    color: #888;
+  }
+
+  button {
+    padding: 0.25rem 0.5rem;
+    border: none;
+    background: #dc3545;
+    color: #fff;
+    border-radius: 4px;
+    transition: background 0.2s;
+  }
+
+  button:hover {
+    background: #c82333;
+  }
+}
