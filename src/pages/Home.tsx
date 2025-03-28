@@ -1,15 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState,useEffect } from 'react';
 import AddTodo from '../components/AddTodo';
 import TodoList from '../components/TodoList';
 import { Todo } from '../types';
 import './Home.scss';
 
 const Home: React.FC = () => {
-  const [todos, setTodos] = useState<Todo[]>([
-    { id: 1, text: 'Imparare React', completed: false },
-    { id: 2, text: 'Studiare Vite e TypeScript', completed: false },
-  ]);
+  const [todos, setTodos] = useState<Todo[]>(() => {
+    const storedTodos = localStorage.getItem('todos');
+    return storedTodos ? JSON.parse(storedTodos) : [
+      { id: 1, text: 'Imparare React', completed: false },
+      { id: 2, text: 'Studiare Vite e TypeScript', completed: false },
+    ];
+  });
 
+  // Salva i todos in localStorage ogni volta che cambiano
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
   const addTodo = (text: string) => {
     const newTodo: Todo = {
       id: Date.now(),
